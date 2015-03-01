@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.2.5)  1 MAR 2015 12:36
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.2.5)  1 MAR 2015 16:37
 entering extended mode
 **COS424_HW1_EddieZhou_DawayChouRen.tex
 
@@ -281,159 +281,167 @@ LaTeX Info: Redefining \] on input line 2666.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\multirow\multirow.sty"
 \bigstrutjot=\dimen121
 )
-No file COS424_HW1_EddieZhou_DawayChouRen.aux.
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 30.
+("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.sty"
+\lst@mode=\count115
+\lst@gtempboxa=\box30
+\lst@token=\toks20
+\lst@length=\count116
+\lst@currlwidth=\dimen122
+\lst@column=\count117
+\lst@pos=\count118
+\lst@lostspace=\dimen123
+\lst@width=\dimen124
+\lst@newlines=\count119
+\lst@lineno=\count120
+\lst@maxwidth=\dimen125
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
+File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
+\c@lstnumber=\count121
+\lst@skipnumbers=\count122
+\lst@framebox=\box31
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\listings\listings.cfg"
+File: listings.cfg 2013/08/26 1.5b listings configuration
+))
+Package: listings 2013/08/26 1.5b (Carsten Heinz)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
+File: lstlang1.sty 2013/08/26 1.5b listings language file
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang2.sty"
+File: lstlang2.sty 2013/08/26 1.5b listings language file
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang3.sty"
+File: lstlang3.sty 2013/08/26 1.5b listings language file
+)
+("C:\Users\edz504\Documents\Princeton\Junior\S15\COS424\Assignment 1\write-up\C
+OS424_HW1_EddieZhou_DawayChouRen.aux")
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 46.
+
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-\AtBeginShipoutBox=\box30
+\AtBeginShipoutBox=\box32
 
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count115
-\scratchdimen=\dimen122
-\scratchbox=\box31
-\nofMPsegments=\count116
-\nofMParguments=\count117
-\everyMPshowfont=\toks20
-\MPscratchCnt=\count118
-\MPscratchDim=\dimen123
-\MPnumerator=\count119
-\makeMPintoPDFobject=\count120
-\everyMPtoPDFconversion=\toks21
+\scratchcounter=\count123
+\scratchdimen=\dimen126
+\scratchbox=\box33
+\nofMPsegments=\count124
+\nofMParguments=\count125
+\everyMPshowfont=\toks21
+\MPscratchCnt=\count126
+\MPscratchDim=\dimen127
+\MPnumerator=\count127
+\makeMPintoPDFobject=\count128
+\everyMPtoPDFconversion=\toks22
 )
-Package hyperref Info: Link coloring OFF on input line 30.
+Package hyperref Info: Link coloring OFF on input line 46.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count121
+\c@section@level=\count129
 )
-LaTeX Info: Redefining \ref on input line 30.
-LaTeX Info: Redefining \pageref on input line 30.
-LaTeX Info: Redefining \nameref on input line 30.
+LaTeX Info: Redefining \ref on input line 46.
+LaTeX Info: Redefining \pageref on input line 46.
+LaTeX Info: Redefining \nameref on input line 46.
+
+("C:\Users\edz504\Documents\Princeton\Junior\S15\COS424\Assignment 1\write-up\C
+OS424_HW1_EddieZhou_DawayChouRen.out")
+("C:\Users\edz504\Documents\Princeton\Junior\S15\COS424\Assignment 1\write-up\C
+OS424_HW1_EddieZhou_DawayChouRen.out")
 \@outlinefile=\write3
+\c@lstlisting=\count130
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 33.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 33.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 33.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 49.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 34.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 50.
 
-
-LaTeX Warning: Citation `zhu2009' on page 1 undefined on input line 45.
-
-
-LaTeX Warning: Citation `lacoste2009' on page 1 undefined on input line 45.
-
-
-LaTeX Warning: Citation `bird2009' on page 1 undefined on input line 50.
-
-
-Underfull \vbox (badness 6526) has occurred while \output is active []
+Underfull \vbox (badness 1715) has occurred while \output is active []
 
  [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 ]
 
-LaTeX Warning: Citation `scikit-learn' on page 2 undefined on input line 54.
-
-
-LaTeX Warning: Reference `tab:classifiers' on page 2 undefined on input line 85
-.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 [2]
 
-LaTeX Warning: Reference `tab:words' on page 3 undefined on input line 111.
+LaTeX Warning: Citation `zhu2009' on page 3 undefined on input line 121.
 
 
-Overfull \hbox (39.48653pt too wide) in paragraph at lines 116--153
- [][] 
- []
-
-
-LaTeX Warning: Reference `tab:classifiers' on page 3 undefined on input line 15
-9.
-
-[3]
-
-LaTeX Warning: Citation `zhu2009' on page 4 undefined on input line 169.
-
-
-LaTeX Warning: Citation `lacoste2009' on page 4 undefined on input line 169.
+LaTeX Warning: Citation `lacoste2009' on page 3 undefined on input line 121.
 
 No file COS424_HW1_EddieZhou_DawayChouRen.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 176.
-[4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 176.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 128.
+[3]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 128.
 
 ("C:\Users\edz504\Documents\Princeton\Junior\S15\COS424\Assignment 1\write-up\C
 OS424_HW1_EddieZhou_DawayChouRen.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 176.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 176.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 128.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 128.
+Package rerunfilecheck Info: File `COS424_HW1_EddieZhou_DawayChouRen.out' has n
+ot changed.
+(rerunfilecheck)             Checksum: 3AB334589340B0FBF1F40894565A4A9B;553.
 
-
-Package rerunfilecheck Warning: File `COS424_HW1_EddieZhou_DawayChouRen.out' ha
-s changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `COS424_HW1_EddieZhou_DawayChouRen.o
-ut':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  FD6126E55DA0B1A751384B5289F30E00;602.
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 176.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 128.
  ) 
 Here is how much of TeX's memory you used:
- 6223 strings out of 493921
- 88882 string characters out of 3147280
- 203140 words of memory out of 3000000
- 9428 multiletter control sequences out of 15000+200000
- 22963 words of font info for 48 fonts, out of 3000000 for 9000
+ 8214 strings out of 493921
+ 116254 string characters out of 3147280
+ 248544 words of memory out of 3000000
+ 11397 multiletter control sequences out of 15000+200000
+ 21942 words of font info for 50 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 37i,11n,39p,1015b,327s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
+ 37i,11n,41p,861b,1596s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{table.1} has been referenced but does not exist, 
+replaced by a fixed one
+
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
 onts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
 sy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/Mi
 KTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
 pe1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on COS424_HW1_EddieZhou_DawayChouRen.pdf (4 pages, 140813 bytes)
+Output written on COS424_HW1_EddieZhou_DawayChouRen.pdf (3 pages, 135458 bytes)
 .
 PDF statistics:
- 97 PDF objects out of 1000 (max. 8388607)
- 28 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 115 PDF objects out of 1000 (max. 8388607)
+ 22 named destinations out of 1000 (max. 500000)
+ 73 words of extra memory for PDF output out of 10000 (max. 10000000)
 

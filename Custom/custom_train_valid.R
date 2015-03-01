@@ -80,3 +80,12 @@ print(end.time - start.time)
 # Time difference of 2.13140 min
 h2o.saveModel(model, getwd())
 h2o.shutdown(localH2O)
+
+##### Logistic
+train.all <- data.frame(y=y.train, x=X.train.s)
+start.time <- Sys.time()
+logistic_model <- glm(y~., data=train.all, family = binomial)
+end.time <- Sys.time()
+print(end.time - start.time)
+save(logistic_model, file="logistic_model_custom.RData")
+# Time difference of 4.196407 secs

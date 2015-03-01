@@ -24,7 +24,7 @@ def replace(w):
         print('wat')
         return -1
 
-data = np.c_[np.asarray([replace(w) for w in y_train_str]),read_bagofwords_dat('trec07p_data/Train/train_emails_bag_of_words_100.dat', numofemails=45000)]
+data = np.c_[np.asarray([replace(w) for w in y_train_str]), read_bagofwords_dat('trec07p_data/Train/train_emails_bag_of_words_100.dat', numofemails=45000)]
 np.random.shuffle(data)
 
 # testing with random 500
@@ -108,8 +108,11 @@ for train_index, test_index in kf:
     joblib.dump(cv_scores, 'cv_scores.pkl')
     f += 1
 
-# calculate the mean CV score
-cv_scores['mean'] = cv_scores.iloc[:, 0:F].mean(1)
+# calculate the total CV score
+cv_scores['total'] = cv_scores.iloc[:, 0:F].sum(1)
+
+# calculate generalization error
+cv_scores['gen_acc'] = 1 - (cv_scores['total'] / len(y_train_str))
 
 # save cv_scores again
 joblib.dump(cv_scores, 'cv_scores.pkl')
@@ -118,8 +121,8 @@ joblib.dump(cv_scores, 'cv_scores.pkl')
 # now train the best classifier on the full set of training data
 # (also save it)
 cv_scores = joblib.load('cv_scores.pkl')
-# retrieve the classifier with the highest mean CV score
-best_clf_name = cv_scores.loc[:, 'mean'].idxmin()
+# retrieve the classifier with the highest total CV score (smallest # wrong)
+best_clf_name = cv_scores.loc[:, 'total'].idxmin()
 
 clf = linear_model.LogisticRegression()
 start = datetime.datetime.now()
@@ -130,16 +133,3 @@ delt = end - start
 print("LOG full training fit took " + str(delt))
 joblib.dump(clf, 'best_clf.pkl')
 
-# and get the final test accuracy
-with open('trec07p_data/Test/test_emails_classes_0.txt') as f:
-    y_test_str = f.read().split('\n')
-y_test = np.asarray([replace(w) for w in y_test_str])
-X_test = read_bagofwords_dat('trec07p_data/Test/test_emails_bag_of_words_0.dat', numofemails=5000)
-start = datetime.datetime.now()
-print("Starting LOG full testing predict")
-y_pred = clf.predict(X_test)
-end = datetime.datetime.now()
-delt = end - start
-print("LOG full testing predict took " + str(delt))
-errors = sum(abs(y_pred - y_test))
-test_acc = 1 - (float(errors) / len(y_test))
