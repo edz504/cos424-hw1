@@ -1,0 +1,85 @@
+179 total features
+
+
+[2 features]
+hapax legomena / total words
+hapax dislegomena / total words
+
+[8 features]
+punctuation features / total characters:
+.
+,
+!
+?
+;
+:
+'
+"
+
+[22 features]
+special features / total characters
+~
+@
+#
+$
+%
+^
+&
+*
+(
+)
+{
+}
+[
+]
+<
+>
+/
+\
+-
+_
++
+=
+
+[6 character ratio features]
+uppercase chars / total chars
+lowercase chars / total chars
+alphabetical chars / total chars
+digit chars / total chars
+special chars / total chars
+punctuation chars / total chars
+
+[5 other features]
+uppercase words / total words
+lowercase words / total words
+camelcase (mixed capitalization) / total words
+total chars
+total words
+
+[37 * 3 features = 108]
+REPEAT all these previous 43 features for the email subject except without the ones that are divided by total words (so hapax lego, hapax dislego, uppercase words, lowercase words, camelcase, and total words)
+REPEAT these features for the email name " " [dawaychouren]
+REPEAT these features for the domain name " " [gmail.com]
+
+
+[5 features]
+content type: 0 = multipart/alternative, 1 = multipart/related, 2 = text/html, 3 = text/plain, 4 = multipart/mixed, 5 = multipart/report, 6 = multipart/signed, 7 = no content type 
+hour sent
+minute sent
+second sent
+day (0 = Sunday -> 6 = Saturday)
+
+[20 features]
+number of words of length 1 / total words
+"" length 2
+.
+.
+.
+length 19
+length 20+
+
+
+
+
+
+Should be 179 total features

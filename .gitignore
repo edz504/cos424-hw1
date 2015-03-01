@@ -1,0 +1,8 @@
+*.csv
+*.RData
+*.npy
+*.pkl
+P1Data/
+trec07p_data/
+*.7z
+*.tar
