@@ -46,3 +46,16 @@ roc_df = pd.DataFrame({
     'tpr': tpr,
     'fpr': fpr})
 roc_df.to_csv('roc_vanilla.csv', index=False)
+
+# analyze incorrect
+wrong_X = X_test[y_test != y_pred]
+right_X = X_test[y_test == y_pred]
+
+w_mean_feat = wrong_X.mean(0)
+r_mean_feat = right_X.mean(0)
+diff = w_mean_feat - r_mean_feat
+print len(diff[diff < 0])
+print len(diff[diff > 0])
+
+abs(clf.decision_function(wrong_X)).mean()
+abs(clf.decision_function(right_X)).mean()

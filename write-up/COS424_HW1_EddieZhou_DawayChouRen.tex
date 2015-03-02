@@ -139,8 +139,46 @@ The ROC curves confirm the numbers, telling us that the linear support vector ma
 \subsection{Computational speed}
 As expected, all of the classifiers' had much shorter training times on the custom features set than the times on the higher-dimensional vanilla feature set.  Among the vanilla feature models, KNN was originally considered, but the prediction phase took too long given the massive distance calculations involved.  Of the three, Naive Bayes was quicker than the Logistic Regression, which was much quicker than AdaBoost (which requires training all the weak learner decision trees).  For the custom feature set, the support vector machines all took longer than the random forest, neural network, and logistic regression (with linear taking the longest).
 \section{Discussion}
-The difference in models considered in the validation phase between the vanilla and custom feature sets (as well as the choice to partition out a set validation set rather than employ cross-validation in the custom feature training) was due largely to the desire for experimentation.  The two final test accuracies are not directly compared -- in any case, given the extraordinarily high validation and test accuracies in the models trained on the vanilla feature set, there is not a large difference in performance.  This leads us to believe that even if we were to spend the huge amount of time necessary to train the linear support vector machine in 15228-space, the gain in accuracy over the more parsimonious and efficient logistic regression would be negligible.\par 
-Given the extremely high accuracy of the logistic regression on the vanilla feature datasets, it would be interesting to examine the incorrectly classified examples from that testing dataset.
+The difference in models considered in the validation phase between the vanilla and custom feature sets (as well as the choice to partition out a set validation set rather than employ cross-validation in the custom feature training) was due largely to the desire for experimentation.  The two final test accuracies are not directly compared -- in any case, given the extraordinarily high validation and test accuracies in the models trained on the vanilla feature set, there is not a large difference in performance.  This leads us to believe that even if we were to spend the huge amount of time necessary to train the linear support vector machine in 15228-space, the gain in accuracy over the more parsimonious and efficient logistic regression would be negligible.
+\subsection{Vanilla}
+Given the extremely high accuracy of the logistic regression on the vanilla feature datasets, it would be interesting to examine the incorrectly classified examples from that testing dataset.  We split the testing set into two parts -- the first being the 12 samples that were incorrectly classified, and the second being the 4988 samples that were correctly classified.  Taking the average over each features, grouped by the set, we have
+\begin{lstlisting}
+>>> w_mean_feat 
+array([  0.        ,   4.75      ,  58.58333333, ...,   0.        ,
+         0.        ,   0.        ])
+>>> r_mean_feat
+array([ 0.        ,  4.17481957,  8.11126704, ...,  0.        ,
+        0.        ,  0.        ])
+\end{lstlisting}
+We then examine the differences between each of these mean feature arrays -- for how many of the features (if any) is there a significant difference in the values for the incorrectly classified data vs. the correctly classified data?
+\begin{lstlisting}
+>>> diff = w_mean_feat - r_mean_feat
+>>> len(diff[diff < 0])
+12705
+>>> len(diff[diff > 0])
+1446
+>>> np.mean(diff[diff < 0])
+-0.020963396238602189
+>>> np.mean(diff[diff > 0])
+1.5585149864515779
+\end{lstlisting}
+Almost all of the features have larger values (note, due to the bag-of-words representation, they are all obviously positive) in the wrongly classified set than in the correctly classified set.  Moreover, for the few features that are larger in the correctly classified set, the difference is 74 times smaller.  This leads us to believe that our logistic regression model mainly had trouble with examples where the feature values were relatively large.\par 
+We can further examine the classifier's specifics regarding the incorrectly and correctly classified examples by looking at the decision function values:
+\begin{lstlisting}
+>>> clf.decision_function(wrong_X)
+array([ -1.67081328,  -1.41926831,  -2.45425533, -25.22240694,
+        -5.60804877,  -0.67833474,  -2.13168844,  -1.77246731,
+        -1.59640113,  -1.12172361,  -1.19985637,  -2.09881143])
+>>> clf.decision_function(right_X)
+array([-18.19134301, -19.2415738 , -19.25012133, ...,  12.39068363,
+        13.18349665,   9.43072514])
+>>> abs(clf.decision_function(wrong_X)).mean()
+3.9145063064880232
+>>> abs(clf.decision_function(right_X)).mean()
+17.188080785861974
+\end{lstlisting}
+It makes sense that the decision function scores are high for the correctly classified samples -- in other words, the logistic model is very certain of the outputted classification on these samples.  On the other hand, the magnitude of the decision function values on the incorrectly classified samples is much smaller, reflecting the uncertainty the model has in classifying them.
+\subsection{Custom}
 \section{Conclusion}
 In summary, using a slightly modified version of the bag-of-words features given to us alongside a logistic regression allows us to obtain superb testing accuracy of 99.762\%.  With a much smaller, custom-made feature space, the validation phase gives us a linear support vector machine, which produces a testing accuracy of 88.98\% at a much smaller space cost.\par 
 A natural extension would be to train the linear SVM on the larger vanilla-feature dataset, but as mentioned earlier, the potential gains in accuracy would be negligible at best given the already superb (and presumably quicker) performance of other models on that data.\par 

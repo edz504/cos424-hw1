@@ -20,3 +20,17 @@ acc.test <- 1 - sum(abs(y.test - round(probs.full))) / length(y.test)
 
 # calculate the 2-class log loss metric
 ll.test <- -(1 / length(y.test)) * sum(y.test * log(probs.full))
+
+# examine incorrect vs. correct
+corr <- X.test[which(y.test.pred.svm.linear == factor(y.test)), ]
+incorr <- X.test[which(y.test.pred.svm.linear != factor(y.test)), ]
+
+c.mean <- apply(corr, FUN=mean, 2)
+ic.mean <- apply(incorr, FUN=mean, 2)
+length(which(c.mean > ic.mean))
+length(which(ic.mean > c.mean))
+
+write(which(y.test.pred.svm.linear == factor(y.test)), ncolumns = 1,
+    file='custom_correct_ind.txt')
+write(which(y.test.pred.svm.linear != factor(y.test)), ncolumns = 1,
+    file='custom_incorrect_ind.txt')
