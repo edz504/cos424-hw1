@@ -59,6 +59,7 @@ Next, as more of an experiment, we use custom features extracted with more meani
 %
 %This data set is the canonical text multi class classification data set in the machine learning community, and has been used as a benchmark for text classification methods in many contexts. In particular, recent text classification methods have used the bag-of-words representation of this data set projected down to a set of latent \emph{topics}, where the projection is informed by the class label~\cite{zhu2009,lacoste2009}. Then, for testing, new posts also are considered in the context of the low-dimensional topic space instead of their bag-of-words representation. This suggests that feature selection may benefit the classification task.
 \subsection{Data processing}
+(insert description of data)\par 
 The TREC 2007 dataset was downloaded from the COS424 Piazza website on February 13th, 2015, with the folder already partitioned into a 90/10 training and testing split.  Using the \lstinline{email_process.py}\lstinline{} script that was written for us (with a small modification of dictionary threshold 200 lowered to 100), we extracted enough word counts for each training and testing emai to form a dataframe with the 45000 examples, and 15228 features per email.\par 
 For the custom features, we )insert stuff from Daway's explanation here)
 \subsection{Classification methods}
@@ -113,7 +114,7 @@ Taking the logistic regression as our ``best model'', we re-train it on the full
 \centering
 \includegraphics[width=140mm]{roc_vanilla.png}
 \end{figure}
-This tells us that we are near our perfectly desired $(0, 1)$ point.  This makes sense, because when we have a very high threshold, everything is classified as negative, and, as with all ROC curves, the first point is at $(0, 0$.  But because the classifier is so strong, its predicted probabilities are very close to 0 and 1, so the threshold only needs to be relaxed a small amount before the true positive rate shoots up.  The ROC curves of such successful classifiers are almost misleading -- with the points overlaid on the curve, we see that the fpr value simply jumps from 0.09 to 1 as the threshold goes to 0.
+This tells us that we are near our perfectly desired $(0, 1)$ point.  This makes sense, because when we have a very high threshold, everything is classified as negative, and, as with all ROC curves, the first point is at $(0, 0)$.  But because the classifier is so strong, its predicted probabilities are very close to 0 and 1, so the threshold only needs to be relaxed a small amount before the true positive rate shoots up.  The ROC curves of such successful classifiers are almost misleading -- with the points overlaid on the curve, we see that the fpr value simply jumps from 0.09 to 1 as the threshold goes to 0.
 \subsubsection{Custom Features}
 Because the more refined feature space is defined by only 63 features, the classifiers are working with less data and should be expected to have lower validation and testing scores.  The idea here is that with much lower space, time, and computational costs, we might be able to achieve decent performance.
 \begin{table}[H]
@@ -134,18 +135,14 @@ It is clear that the linear support vector machine blew all of the other models 
 \centering
 \includegraphics[width=150mm]{roc_custom.png}
 \end{figure}
+The ROC curves confirm the numbers, telling us that the linear support vector machine is the model to move forward with.  Re-training on the full training set, and then applying to the testing set gives us \textbf{88.98\% accuracy}, which is very comparable to the vanilla feature set, especially considering the space, time, and computational improvements.
 \subsection{Computational speed}
-The variability in the time for training and testing these linear classifiers was substantial (Table~\ref{tab:classifiers}). In particular, we found that the KNN classifier, which does not perform training, takes the largest amount of time because of the all-by-all comparison that occurs during test phase. AdaBoost takes the second longest, but here the time is spent on training the weak classifiers and the weights of the linear combination of those weak classifiers. The fastest classifiers include the NB classifier, the perceptron, and the hinge loss classifier, followed by the linear SVM and then the decision tree and random forest classifiers.
-
-\section{Discussion and Conclusion}
-
-In this work, we compared ten different classifiers to predict the newsgroup for a particular newsgroup post using bag-of-words features. We found that, considering precision, recall, and time, the decision tree and random forest classifiers showed superior performance on this task.  The effect of feature selection was mostly on the time, although the improvement in performance was substantial for the random forest classifier on this task.
-
-There are a number of directions to go that would improve these results. First, we could expand our data set using available data from these and other related newsgroups. Second, we could consider more sophisticated features for the newsgroup posts than dictionary word counts; bi-grams, post length, or punctuation may be useful in this classification task. Third, we could use the most promising models in a more problem-tailored way. In particular, because the random forest classifier showed such promise in this task, we could consider applying it to this problem using multi class class labels instead of one-versus-rest class labels, and reducing the dimension of the feature space using supervised latent Dirichlet allocation based methods~\cite{zhu2009,lacoste2009}. 
-
-%\subsubsection*{Acknowledgments}
-
-
-\bibliography{ref}
-
+As expected, all of the classifiers' had much shorter training times on the custom features set than the times on the higher-dimensional vanilla feature set.  Among the vanilla feature models, KNN was originally considered, but the prediction phase took too long given the massive distance calculations involved.  Of the three, Naive Bayes was quicker than the Logistic Regression, which was much quicker than AdaBoost (which requires training all the weak learner decision trees).  For the custom feature set, the support vector machines all took longer than the random forest, neural network, and logistic regression (with linear taking the longest).
+\section{Discussion}
+The difference in models considered in the validation phase between the vanilla and custom feature sets (as well as the choice to partition out a set validation set rather than employ cross-validation in the custom feature training) was due largely to the desire for experimentation.  The two final test accuracies are not directly compared -- in any case, given the extraordinarily high validation and test accuracies in the models trained on the vanilla feature set, there is not a large difference in performance.  This leads us to believe that even if we were to spend the huge amount of time necessary to train the linear support vector machine in 15228-space, the gain in accuracy over the more parsimonious and efficient logistic regression would be negligible.\par 
+Given the extremely high accuracy of the logistic regression on the vanilla feature datasets, it would be interesting to examine the incorrectly classified examples from that testing dataset.
+\section{Conclusion}
+In summary, using a slightly modified version of the bag-of-words features given to us alongside a logistic regression allows us to obtain superb testing accuracy of 99.762\%.  With a much smaller, custom-made feature space, the validation phase gives us a linear support vector machine, which produces a testing accuracy of 88.98\% at a much smaller space cost.\par 
+A natural extension would be to train the linear SVM on the larger vanilla-feature dataset, but as mentioned earlier, the potential gains in accuracy would be negligible at best given the already superb (and presumably quicker) performance of other models on that data.\par 
+Another extension that we believe could be fruitful is hyperparameter tuning for the deep neural network -- since these methods are highly parameter-dependent, tuning of the number of epochs, layers, etc. could result in performance that outperforms the linear SVM.  This would be highly desirable, given the shorter training time for the DNN over the SVM.
 \end{document}
