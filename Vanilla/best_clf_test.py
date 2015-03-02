@@ -3,8 +3,7 @@ import pandas as pd
 import datetime
 from sklearn.externals import joblib
 from sklearn import linear_model
-from sklearn.metrics import roc_curve, auc
-import matplotlib.pyplot as plt
+from sklearn.metrics import roc_curve
 
 # load best classifier from CV
 clf = joblib.load('best_clf.pkl')
@@ -32,6 +31,7 @@ X_test = read_bagofwords_dat('trec07p_data/Test/test_emails_bag_of_words_0.dat',
 start = datetime.datetime.now()
 print("Starting LOG full testing predict")
 y_pred = clf.predict(X_test)
+y_pred_prob = clf.predict_proba(X_test)
 end = datetime.datetime.now()
 delt = end - start
 print("LOG full testing predict took " + str(delt))
@@ -39,18 +39,10 @@ print("LOG full testing predict took " + str(delt))
 errors = sum(abs(y_pred - y_test))
 test_acc = 1 - (float(errors) / len(y_test))
 
-
+prob_pos = [p[1] for p in y_pred_prob]
 # Compute ROC curve
-roc = roc_curve(y_test, y_pred)
-
-# Plot of a ROC curve for a specific class
-plt.figure()
-plt.plot(roc, label='ROC curve')
-plt.plot([0, 1], [0, 1], 'k--')
-plt.xlim([0.0, 1.0])
-plt.ylim([0.0, 1.05])
-plt.xlabel('False Positive Rate')
-plt.ylabel('True Positive Rate')
-plt.title('Receiver operating characteristic example')
-plt.legend(loc="lower right")
-plt.show()
+fpr, tpr, thresh = roc_curve(y_test, prob_pos)
+roc_df = pd.DataFrame({
+    'tpr': tpr,
+    'fpr': fpr})
+roc_df.to_csv('roc_vanilla.csv', index=False)
