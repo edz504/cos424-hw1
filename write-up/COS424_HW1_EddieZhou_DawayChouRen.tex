@@ -179,6 +179,7 @@ array([-18.19134301, -19.2415738 , -19.25012133, ...,  12.39068363,
 \end{lstlisting}
 It makes sense that the decision function scores are high for the correctly classified samples -- in other words, the logistic model is very certain of the outputted classification on these samples.  On the other hand, the magnitude of the decision function values on the incorrectly classified samples is much smaller, reflecting the uncertainty the model has in classifying them.
 \subsection{Custom}
+
 \section{Conclusion}
 In summary, using a slightly modified version of the bag-of-words features given to us alongside a logistic regression allows us to obtain superb testing accuracy of 99.762\%.  With a much smaller, custom-made feature space, the validation phase gives us a linear support vector machine, which produces a testing accuracy of 88.98\% at a much smaller space cost.\par 
 A natural extension would be to train the linear SVM on the larger vanilla-feature dataset, but as mentioned earlier, the potential gains in accuracy would be negligible at best given the already superb (and presumably quicker) performance of other models on that data.\par 
