@@ -135,3 +135,14 @@ ev[6,] <- c(acc.logistic, ll.logistic, prec.logistic, rec.logistic, f1.logistic)
 
 rownames(ev) <- c('RF', 'SVM_gauss', 'SVM_sigmoid', 'SVM_linear', 'DNN', 'Logistic')
 save(ev, file='ev.RData')
+
+pred_prob <- data.frame(
+    truth = y.valid,
+    rf = y.valid.pred.rf,
+    svm_gauss = probs.svm.gauss,
+    svm_sigmoid = probs.svm.sigmoid,
+    svm_linear = probs.svm.linear,
+    dnn = probs.h2o,
+    logistic = y.valid.pred.logistic)
+write.csv(pred_prob, file='pred_prob.csv',
+    row.names=FALSE)

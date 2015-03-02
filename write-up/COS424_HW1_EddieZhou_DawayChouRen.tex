@@ -6,6 +6,7 @@
 \usepackage{amsmath}
 \usepackage{multirow}
 \usepackage{listings}
+\usepackage{float}
 \lstset{frame=tb,
   language=R,
   aboveskip=3mm,
@@ -115,7 +116,24 @@ Taking the logistic regression as our ``best model'', we re-train it on the full
 This tells us that we are near our perfectly desired $(0, 1)$ point.  This makes sense, because when we have a very high threshold, everything is classified as negative, and, as with all ROC curves, the first point is at $(0, 0$.  But because the classifier is so strong, its predicted probabilities are very close to 0 and 1, so the threshold only needs to be relaxed a small amount before the true positive rate shoots up.  The ROC curves of such successful classifiers are almost misleading -- with the points overlaid on the curve, we see that the fpr value simply jumps from 0.09 to 1 as the threshold goes to 0.
 \subsubsection{Custom Features}
 Because the more refined feature space is defined by only 63 features, the classifiers are working with less data and should be expected to have lower validation and testing scores.  The idea here is that with much lower space, time, and computational costs, we might be able to achieve decent performance.
-
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+             & validation accuracy & log loss   & precision & recall    & $F_1$     \\ \hline
+RF           & 0.5796667           & 0.3951222  & 0.8917411 & 0.1781494 & 0.2969708 \\ \hline
+SVM\_gauss   & 0.4983333           & 0.1532875  & 0.4983333 & 1.0000000 & 0.6651835 \\ \hline
+SVM\_sigmoid & 0.3371111           & 3.6592386  & 0.3623350 & 0.4345596 & 0.3951744 \\ \hline
+SVM\_linear  & 0.8593333           & 0.6662509  & 0.8217070 & 0.9166109 & 0.8665683 \\ \hline
+DNN          & 0.5195556           & 0.8806850  & 0.5176342 & 0.5268673 & 0.4307182 \\ \hline
+Logistic     & 0.4610000           & 10.2988752 & 0.4563246 & 0.4263099 & 0.4493372 \\ \hline
+\end{tabular}
+\end{table}
+It is clear that the linear support vector machine blew all of the other models out of the water, with a much higher validation accuracy, precision, recall, and $F_1$ score.  Since we have more models and computational capacity here, we also provide the ROC curves of every model on the validation set:
+\begin{figure}[h]
+\centering
+\includegraphics[width=150mm]{roc_custom.png}
+\end{figure}
 \subsection{Computational speed}
 The variability in the time for training and testing these linear classifiers was substantial (Table~\ref{tab:classifiers}). In particular, we found that the KNN classifier, which does not perform training, takes the largest amount of time because of the all-by-all comparison that occurs during test phase. AdaBoost takes the second longest, but here the time is spent on training the weak classifiers and the weights of the linear combination of those weak classifiers. The fastest classifiers include the NB classifier, the perceptron, and the hinge loss classifier, followed by the linear SVM and then the decision tree and random forest classifiers.
 
