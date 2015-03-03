@@ -48,9 +48,9 @@ Daway Chou-Ren\\
 Spam has plagued the inboxes of email users for decades now, but it is still a fruitful machine learning exercise to attempt spam classification.  In this assignment, we address the problem of classifying emails into spam or ham using two different feature sets, and a variety of different classifiers, with the TREC 2007 spam dataset.  We find that logistic regression with bag-of-words features achieves the highest accuracy, but when examining different classifiers in a more refined and smaller feature space, a linear SVM achieves the best performance.
 \end{abstract}
 \section{Introduction}
-We first use the given script to obtain bag-of-word features -- using cross-validation, we choose among the following three models -- Naive Bayes, Logistic Regression, and AdaBoost.  We re-train the best model on the full training set, and obtain the final test accuracy upon the testing set.  Next, we use custom features, extracted from the same dataset, and train the following models -- Random Forests, SVM (Gaussian), SVM (Sigmoid), SVM (Linear), Deep Neural Network, and Logistic Regression.  Picking the best model on validation score, we re-train said model on the full training set and obtain a testing accuracy again.\cite{guzella2009review, hastie2009elements}.  All Python and R code is available at our GitHub repo \cite{gh}.
+We first use the given script to obtain bag-of-word features, and using cross-validation, we choose among Naive Bayes, Logistic Regression, and AdaBoost.  We re-train the best model on the full training set, and obtain the final test accuracy upon the testing set.  Next, we use custom features, extracted from the same dataset, and train the following models -- Random Forests, SVM (Gaussian), SVM (Sigmoid), SVM (Linear), Deep Neural Network, and Logistic Regression.  Picking the best model on validation score, we re-train said model on the full training set and obtain a testing accuracy again.\cite{guzella2009review, hastie2009elements}.  All Python and R code is available at our GitHub repo \cite{gh}.
 \subsection{Data processing}
-The TREC 2007 dataset was downloaded from the COS424 Piazza website on February 13th, 2015, with the folder already partitioned into a 90/10 training/testing split.\cite{dataset} The test set had 5000 emails classified 50/50 as Spam/Not Spam. Similarly, the training set was split into 22,500 Spam and 22,500 Not Spam, for a total of 50,000 emails. 
+The TREC 2007 dataset was downloaded from the COS424 Piazza on 2/13/2015.  \cite{dataset} The test set had 5000 emails classified 50/50 as Spam/Haam, and the size 45000 training set was split 50/50.
 \subsection*{Email Format}
 Each individual email was stored as a text file, along with email metadata, with the general format as follows: sender information (address and date/time sent), return path information, receiver information, and message IDs, header information ("From", "To", etc.), and then the actual email body, encoded in plain text with HTML tags.
 \subsection*{Data Extraction}
@@ -126,10 +126,10 @@ Logistic     & 0.4610000           & 10.2988752 & 0.4563246 & 0.4263099 & 0.4493
 It is clear that the linear support vector machine performed the best, with a much higher validation accuracy, precision, recall, and $F_1$ score.
 \begin{figure}[ht]
 \centering
-\includegraphics[width=120mm]{roc_custom.png}
+\includegraphics[width=130mm]{roc_custom.png}
 \caption{ROC curves for each classifier on the custom features validation set}
 \end{figure}
-The ROC curves confirm the numbers, telling us that the linear support vector machine is the model to move forward with.  Re-training on the full training set, and then applying to the testing set gives us \textbf{88.98\% test accuracy}, which is very comparable to the vanilla feature set, especially considering the space, time, and computational improvements.
+The ROC curves confirm the numbers, regarding the linear SVM performance.  Re-training on the full training set, and evaluating on test gives \textbf{88.98\% test accuracy}, which is very comparable to the vanilla feature set given the lower costs.
 %\subsection{Computational speed}
 %As expected, all of the classifiers' had much shorter training times on the custom features set than the times on the higher-dimensional vanilla feature set.  Of the first three, Naive Bayes was quicker than the Logistic Regression, which was much quicker than AdaBoost (which requires training all the weak learner decision trees).  For the custom feature set, the support vector machines all took longer than the the other three models.
 \section{Discussion}

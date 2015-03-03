@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.2.5)  3 MAR 2015 10:40
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.2.5)  3 MAR 2015 10:46
 entering extended mode
 **COS424_HW1_EddieZhou_DawayChouRen.tex
 
@@ -414,7 +414,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: roc_custom.png Graphic file (type png)
  <use roc_custom.png>
 Package pdftex.def Info: roc_custom.png used on input line 129.
-(pdftex.def)             Requested size: 341.43306pt x 204.86006pt.
+(pdftex.def)             Requested size: 369.88582pt x 221.93063pt.
  [3pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
  has been already used, duplicate ignored
 
@@ -448,20 +448,16 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 158.
 Package rerunfilecheck Info: File `COS424_HW1_EddieZhou_DawayChouRen.out' has n
 ot changed.
 (rerunfilecheck)             Checksum: B8E4468048753DE01ADF9EB29E1584D0;517.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 158.
  ) 
 Here is how much of TeX's memory you used:
  8364 strings out of 493921
  118647 string characters out of 3147280
- 250851 words of memory out of 3000000
+ 252851 words of memory out of 3000000
  11500 multiletter control sequences out of 15000+200000
  20807 words of font info for 46 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 37i,11n,41p,1023b,1596s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,12n,41p,1023b,1596s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fon
@@ -474,7 +470,7 @@ ram Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTe
 X 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
 pe1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utm
 r8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on COS424_HW1_EddieZhou_DawayChouRen.pdf (5 pages, 226980 bytes)
+Output written on COS424_HW1_EddieZhou_DawayChouRen.pdf (5 pages, 226707 bytes)
 .
 PDF statistics:
  176 PDF objects out of 1000 (max. 8388607)
