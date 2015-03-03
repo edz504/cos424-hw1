@@ -49,19 +49,33 @@ Princeton University\\
 \maketitle
 
 \begin{abstract}
-Spam has plagued the inboxes of email users for decades now, and new companies and technologies have risen to fight the influx of ``the use of electronic messaging systems to send unsolicited messages (spam), especially advertising, as well as sending messages repeatedly on the same site.''  In this assignment, we address the problem of classifying emails into spam or ham (not spam) using two different feature sets, and a variety of different classifiers.  The datasets used are the training and testing partitions of the TREC 2007 spam track overview dataset.  We find that logistic regression in conjunction with bag-of-words features achieves the highest accuracy. but when examining different classifiers in a more refined and smaller feature space, a linear support vector machine achieves the best performance.
+Spam has plagued the inboxes of email users for decades now, and new companies and technologies have risen to fight the influx in past years.  In this assignment, we address the problem of classifying emails into spam or ham using two different feature sets, and a variety of different classifiers, with the TREC 2007 spam dataset.  We find that logistic regression in conjunction with bag-of-words features achieves the highest accuracy, but when examining different classifiers in a more refined and smaller feature space, a linear support vector machine achieves the best performance.
 \end{abstract}
 \section{Introduction}
-According to a report on workplace productivity by McKinsey, workers spend up to 28\% of their time checking their email.  While most companies have a rigorous spam filter or secure email gateway in place (such as Proofpoint or Gmail), it is still a fruitful exercise in machine learning to examine classifier and feature extraction in the spam space.\par 
-We first use the given ``vanilla'' feature extraction strict, modified to threshold 100, to extract bag-of-word features from our dataset.  Using cross-validation, we obtain a validation score for each of the following three models -- Naive Bayes, Logistic Regression, and AdaBoost.  Picking the highest validation score, we re-train the model on the full training set, and obtain the final test accuracy upon the testing set originally given.\par 
-Next, as more of an experiment, we use custom features extracted with more meaning than simple bag-of-words features.  Splitting the training set into a simple training / validation partition, we train the following models on the sub-training set -- Random Forests, SVM (Gaussian), SVM (Sigmoid), SVM (Linear), Deep Neural Network, and Logistic Regression.  We take the model with the highest accuracy on the untouched validation set, and then re-train said model on the full training set.  Finally, we evaluate this model on the testing set to obtain an unbiased test accuracy.
-%\section{Related Work}
-%
-%This data set is the canonical text multi class classification data set in the machine learning community, and has been used as a benchmark for text classification methods in many contexts. In particular, recent text classification methods have used the bag-of-words representation of this data set projected down to a set of latent \emph{topics}, where the projection is informed by the class label~\cite{zhu2009,lacoste2009}. Then, for testing, new posts also are considered in the context of the low-dimensional topic space instead of their bag-of-words representation. This suggests that feature selection may benefit the classification task.
+We first use the given ``vanilla'' feature extraction script to extract bag-of-word features from our dataset.  Using cross-validation, we obtain a validation score for each of the following three models -- Naive Bayes, Logistic Regression, and AdaBoost.  Picking the highest validation score, we re-train the model on the full training set, and obtain the final test accuracy upon the testing set originally given.\par 
+Next, as more of an experiment, we use custom features, extracted from the same dataset.  Splitting the training set into a simple training / validation partition, we train the following models on the sub-training set -- Random Forests, SVM (Gaussian), SVM (Sigmoid), SVM (Linear), Deep Neural Network, and Logistic Regression.  We take the model with the highest accuracy on the untouched validation set, and then re-train said model on the full training set.  Finally, we evaluate this model on the testing set to obtain an unbiased test accuracy.
 \subsection{Data processing}
-(insert description of data)\par 
-The TREC 2007 dataset was downloaded from the COS424 Piazza website on February 13th, 2015, with the folder already partitioned into a 90/10 training and testing split.  Using the \lstinline{email_process.py}\lstinline{} script that was written for us (with a small modification of dictionary threshold 200 lowered to 100), we extracted enough word counts for each training and testing emai to form a dataframe with the 45000 examples, and 15228 features per email.\par 
-For the custom features, we )insert stuff from Daway's explanation here)
+The TREC 2007 dataset was downloaded from the COS424 Piazza website on February 13th, 2015, with the folder already partitioned into a 90/10 training/testing split. The test set had 5000 emails classified 50/50 as Spam/Not Spam. Similarly, the training set was split into 22,500 Spam and 22,500 Not Spam, for a total of 50,000 emails. 
+\subsection*{Email Format}
+Each individual email was stored as a text file, along with email metadata. The format was similar for each email as follows: The first line included sender information, including email address and date/time sent. Following this there was return path information (the sender's email address), receiver information, and message IDs.  After this there was typical email header information, again including a "From", "Reply To" (if applicable), "To", "Subject", "Date", mail software, MIME version, Content-type, various priority, Status, virus scan, content length, and line fields.\par
+Many of the fields contained redundant information, such as the multiple identifications of the email sender. Each email contained slight variations on which fields were present, such as whether or not the email had been scanned for viruses. This was obviously dependent on email software or services used.  Following the metadata was the actual email body, encoded in plain text with HTML tags and email formatting present. Email footers were also retained.
+
+\subsection*{Data Extraction}
+\par
+Using the  \lstinline{email_process.py}\lstinline{} script that was written for us (with a small modification of dictionary threshold 200 lowered to 100), we extracted enough word counts for each training and testing email to form a dataframe with the 45000 examples, and 15228 features per email.\par 
+For the custom features, we modified \lstinline|email_process.py| as \lstinline|custom_email_process.py|. Originally this script was used to extract 179 custom features, but we discarded all except 68 because the variance for these features was not high enough to distinguish between classes. \par
+The features kept were as follows and stored in this order, where $W$ is the total word count and $C$ is the total character count of an email:\par 
+\textbf{1:} hapax legomena / $W$\\
+\textbf{2-9 Ratio of punctuation characters / $C$: }  , . ! ? ; : ' "\\
+\textbf{11-32 Ratio of special characters / $C$:} \textasciitilde @ \# \$ \% \textasciicircum \& * ( ) \{ \} [ ] \textless \textgreater / \textbackslash - \_ + =\\
+\textbf{33-37 Types of character ratios:} Uppercase characters / $C$, Lowercase characters / $C$, Digit characters / $C$, Special characters / $C$, Punctuation characters / $C$\\
+\textbf{38-39:} Total characters, total words\\
+\textbf{40-43 Time sent: } Hour, minute, second, and day of week (0 = Sunday)\\
+\textbf{44-63 Word length counts:} Number of words length 1 / $W$, length 2, ... length 19, length 20+
+
+Data extraction for these custom features did not tokenize or stem. We did not stem because we cared about precise character counts and word lengths, and we didn't tokenize because we wanted to preserve punctuation.\\
+
+
 \subsection{Classification methods}
 
 We use three different classification methods from the SciKitLearn Python libraries for the vanilla feature set (all parameterizations are the default unless specified)
@@ -87,10 +101,8 @@ A_q &= 1 - \frac{\sum_{i=1}^5(FP_{fi} + FN_{fi})}{N}
 where $FP_{fi}$ is the number of false positives obtained from training on all folds but fold $i$, and predicting on fold $i$ (likewise for the false negatives $FN_{fi}$.\par
 For our experimental custom feature set, we simply set aside 20\% of the training set as a validation set, to avoid the cost of training the same model $k$ times in the cross validation.  Here, we also obtain some more in-depth metrics rather than just the validation accuracy: we also use the precision, recall, $F_1$-score, and log loss metrics, defined as
 \begin{align*}
-\text{precision} &= \frac{TP}{TP + FP}\\
-\text{recall} &= \frac{TP}{TP + FN}\\
-F_1 &= 2 \cdot \frac{\text{precision } \cdot \text{ recall}}{\text{precision } + \text{ recall}}\\
-\text{log-loss} &= -\frac{1}{N}\sum_{i=1}^N\sum_{j=1}^My_{i,j}\log(p_{i,j})
+\text{precision} &= \frac{TP}{TP + FP}, \hspace{8em} \text{recall} = \frac{TP}{TP + FN}\\
+F_1 &= 2 \cdot \frac{\text{precision } \cdot \text{ recall}}{\text{precision } + \text{ recall}}, \hspace{3em} \text{log-loss} = -\frac{1}{N}\sum_{i=1}^N\sum_{j=1}^My_{i,j}\log(p_{i,j})
 \end{align*}
 where for the log-loss, there are $N$ samples, $M$ classes (2 in our case), $y_{i,j}$ is 1 if sample $i$ is in class $j$, and 0 otherwise, and $p_{i,j}$ is the model's probabilistic estimate of sample $i$ belonging in class $j$.
 \section{Results}
@@ -99,7 +111,6 @@ where for the log-loss, there are $N$ samples, $M$ classes (2 in our case), $y_{
 For our vanilla features and three models, we include the number of misclassified samples in each validation fold (indexing from f0 to f4 instead of f1 to f5), the average number of misclassifications per fold, as well as the total number of misclassifications, which is easily manipulated into the generalization error (and accuracy).
 \begin{table}[h]
 \centering
-\large
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
 \hline
     & f0 & f1 & f2 & f3 & f4 & average & total & gen\_acc \\ \hline
@@ -109,10 +120,11 @@ AdB & 13 & 19 & 15 & 26 & 21 & 18.8    & 94    & 0.997911 \\ \hline
 \end{tabular}
 \end{table}
 While it's clear that the total validation accuracy is extremely high for all three methods, it is clear that the Logistic Regression model obtains the highest accuracy with respect to the entire validation process.\par 
-Taking the logistic regression as our ``best model'', we re-train it on the full training set and then evaluate it in an unbiased fashion on the test set.  Doing so gives us an accuracy that is comparable to the generalization accuracy obtained during the validation phase -- \textbf{99.762\%}.  Given this extraordinarily high test accuracy, we should expect to see a relatively strange ROC curve, one that spikes up immediately as the threshold moves down from 99.99...\% to 0\%.
+Taking the logistic regression as our best model, we re-train it on the full training set and then evaluate it in an unbiased fashion on the test set.  Doing so gives us an accuracy that is comparable to the generalization accuracy obtained during the validation phase -- \textbf{99.762\%}.  Given this extraordinarily high test accuracy, we should expect to see a relatively strange ROC curve, one that spikes up immediately as the threshold moves down from 99.99...\% to 0\%.
 \begin{figure}[h]
 \centering
 \includegraphics[width=140mm]{roc_vanilla.png}
+\caption{ROC curve for Logistic Regression with vanilla feature set}
 \end{figure}
 This tells us that we are near our perfectly desired $(0, 1)$ point.  This makes sense, because when we have a very high threshold, everything is classified as negative, and, as with all ROC curves, the first point is at $(0, 0)$.  But because the classifier is so strong, its predicted probabilities are very close to 0 and 1, so the threshold only needs to be relaxed a small amount before the true positive rate shoots up.  The ROC curves of such successful classifiers are almost misleading -- with the points overlaid on the curve, we see that the fpr value simply jumps from 0.09 to 1 as the threshold goes to 0.
 \subsubsection{Custom Features}
@@ -141,47 +153,18 @@ As expected, all of the classifiers' had much shorter training times on the cust
 \section{Discussion}
 The difference in models considered in the validation phase between the vanilla and custom feature sets (as well as the choice to partition out a set validation set rather than employ cross-validation in the custom feature training) was due largely to the desire for experimentation.  The two final test accuracies are not directly compared -- in any case, given the extraordinarily high validation and test accuracies in the models trained on the vanilla feature set, there is not a large difference in performance.  This leads us to believe that even if we were to spend the huge amount of time necessary to train the linear support vector machine in 15228-space, the gain in accuracy over the more parsimonious and efficient logistic regression would be negligible.
 \subsection{Vanilla}
-Given the extremely high accuracy of the logistic regression on the vanilla feature datasets, it would be interesting to examine the incorrectly classified examples from that testing dataset.  We split the testing set into two parts -- the first being the 12 samples that were incorrectly classified, and the second being the 4988 samples that were correctly classified.  Taking the average over each features, grouped by the set, we have
-\begin{lstlisting}
->>> w_mean_feat 
-array([  0.        ,   4.75      ,  58.58333333, ...,   0.        ,
-         0.        ,   0.        ])
->>> r_mean_feat
-array([ 0.        ,  4.17481957,  8.11126704, ...,  0.        ,
-        0.        ,  0.        ])
-\end{lstlisting}
-We then examine the differences between each of these mean feature arrays -- for how many of the features (if any) is there a significant difference in the values for the incorrectly classified data vs. the correctly classified data?
-\begin{lstlisting}
->>> diff = w_mean_feat - r_mean_feat
->>> len(diff[diff < 0])
-12705
->>> len(diff[diff > 0])
-1446
->>> np.mean(diff[diff < 0])
--0.020963396238602189
->>> np.mean(diff[diff > 0])
-1.5585149864515779
-\end{lstlisting}
-Almost all of the features have larger values (note, due to the bag-of-words representation, they are all obviously positive) in the wrongly classified set than in the correctly classified set.  Moreover, for the few features that are larger in the correctly classified set, the difference is 74 times smaller.  This leads us to believe that our logistic regression model mainly had trouble with examples where the feature values were relatively large.\par 
-We can further examine the classifier's specifics regarding the incorrectly and correctly classified examples by looking at the decision function values:
-\begin{lstlisting}
->>> clf.decision_function(wrong_X)
-array([ -1.67081328,  -1.41926831,  -2.45425533, -25.22240694,
-        -5.60804877,  -0.67833474,  -2.13168844,  -1.77246731,
-        -1.59640113,  -1.12172361,  -1.19985637,  -2.09881143])
->>> clf.decision_function(right_X)
-array([-18.19134301, -19.2415738 , -19.25012133, ...,  12.39068363,
-        13.18349665,   9.43072514])
->>> abs(clf.decision_function(wrong_X)).mean()
-3.9145063064880232
->>> abs(clf.decision_function(right_X)).mean()
-17.188080785861974
-\end{lstlisting}
-It makes sense that the decision function scores are high for the correctly classified samples -- in other words, the logistic model is very certain of the outputted classification on these samples.  On the other hand, the magnitude of the decision function values on the incorrectly classified samples is much smaller, reflecting the uncertainty the model has in classifying them.
-\subsection{Custom}
+Given the extremely high accuracy of the logistic regression on the vanilla feature datasets, it would be interesting to examine the incorrectly classified examples from that testing dataset.  We split the testing set into two parts -- the first being the 12 samples that were incorrectly classified, and the second being the 4988 samples that were correctly classified.  Taking the average over each features, grouped by the set, we then examine the differences between each of these mean feature arrays -- for how many of the features (if any) is there a significant difference in the values for the incorrectly classified data vs. the correctly classified data?  The analysis gives 12705 features where the incorrect samples had a greater mean value, and 1446 features where the correct sample average was higher.  The average of these differences was only 0.021 for when in the incorrect samples' favor, but a much larger 1.559 in the other direction.  Almost all of the features have larger values in the wrongly classified set than in the correctly classified set.  Moreover, for the few features that are larger in the correctly classified set, the difference is 74 times smaller.  This leads us to believe that our logistic regression model mainly had trouble with examples where the feature values were relatively large.\par 
+We can further examine the classifier's specifics regarding the incorrectly and correctly classified examples by looking at the decision function values.  The absolute value of the classifier's decision function values on the incorrect samples was 3.915, but on the correct samples, it was 17.188.  It makes sense that the decision function scores are high for the correctly classified samples -- in other words, the logistic model is very certain of the outputted classification on these samples.  On the other hand, the magnitude of the decision function values on the incorrectly classified samples is much smaller, reflecting the uncertainty the model has in classifying them.
+\subsection{Custom Features}
+To analyze which custom features were most distinguishing, we took the difference of average feature values for the sets of emails classified as spam and not spam, divided by the average variance, and sorted in decreasing order. The corresponding feature indices (0-based), were as follows: \lstinline|[26, 29, 9, 13, 12, 15, 3, 11, 37, 43, 30, 2, 8, 61, 62, 38, 23, 53, 21, 18, 17, 22, 31, 4, 7, 28, 27, 52, 55, 50, 5, 10, 24, 35, 49, 46, 1, 60, 57, 14, 58, 45, 44, 48, 34, 51, 54, 42, 0, 6, 36, 41, 56, 33, 19, 40, 20, 47, 16, 59, 32, 25, 39]|. The most distinguishing features turned out to be mostly special character frequencies, such as '/', '\_', '"', '\$', '\#', '\^', ',', and '@'. Of the ten most distinguishing features, the first eight were special characters, and the last two were the total number of characters and the day of the week the email was sent. \par
+The influence of special character frequencies makes sense since these are most likely very infrequently used in non-spam messages. Even a relatively low usage in spam messages, perhaps because they are automated may give them away. We also expect time features like the day of the week to prove useful since spammers might use automated tools to batch send emails at certain times.
 
-\section{Conclusion}
+\section{Conclusion and Extensions}
 In summary, using a slightly modified version of the bag-of-words features given to us alongside a logistic regression allows us to obtain superb testing accuracy of 99.762\%.  With a much smaller, custom-made feature space, the validation phase gives us a linear support vector machine, which produces a testing accuracy of 88.98\% at a much smaller space cost.\par 
 A natural extension would be to train the linear SVM on the larger vanilla-feature dataset, but as mentioned earlier, the potential gains in accuracy would be negligible at best given the already superb (and presumably quicker) performance of other models on that data.\par 
 Another extension that we believe could be fruitful is hyperparameter tuning for the deep neural network -- since these methods are highly parameter-dependent, tuning of the number of epochs, layers, etc. could result in performance that outperforms the linear SVM.  This would be highly desirable, given the shorter training time for the DNN over the SVM.
+
+From the testing accuracies of almost 90\% using our much smaller feature set, it seems possible that a particularly well-refined feature set could generate results as good as the bag-of-words. Some ideas we would explore if given more time would be to full use the metadata associated with each email to generate features. Given the high distinguishing power of special characters, we would like to do character and token analysis on the email addresses of senders as well as on the subject lines. We would also like to target html tags by doing an analysis of what tags are used by spammers to catch readers' attention. Extending our set of syntactic and lexical features to include things like hapax dislegomena, types of capitalization used, letter n-grams, word n-grams, and even part of speech tags may also prove useful, though in the case of n-grams and part of speech tags, we would almost certainly do variance analysis to see which specific features would be useful since it seemed most of our character and word ratio features were not very distinguishing. We are also interested by the possibility of analyzing the structure of emails themselves. The number of paragraphs, length of paragraphs, and even the type and amount of whitespace used in between them may prove useful in email classification.\par
+
+Another interesting approach may be to break up the set of non-spam emails through clustering. Emails sent to co-workers and bosses will be different both stylistically and structurally than emails sent to friends. It is possible that spam emails closely resemble one type of email. It may be useful to identify clusters of emails that are more similar to spam than others and extract features that have high distinguishing power for these clusters.
 \end{document}
