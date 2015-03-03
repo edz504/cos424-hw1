@@ -1,0 +1,16 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: COS424_HW1_EddieZhou_DawayChouRen.aux
+The style file: plos2009.bst
+Illegal, another \bibstyle command---line 44 of file COS424_HW1_EddieZhou_DawayChouRen.aux
+ : \bibstyle
+ :          {plain}
+I'm skipping whatever remains of this command
+Database file #1: ref.bib
+Warning--can't use both volume and number fields in hastie2009elements
+`journal' is a missing field, not a string, for entry meyer2014package
+while executing---line 1322 of file plos2009.bst
+Warning--empty journal in meyer2014package
+Warning--can't use both volume and number fields in kohavi1995study
+`journal' is a missing field, not a string, for entry powers2011evaluation
+while executing---line 1322 of file plos2009.bst
+Warning--empty journal in powers2011evaluation
+(There were 3 error messages)

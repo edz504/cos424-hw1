@@ -1,0 +1,104 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\bibAnnoteFile}[1]{%
+  \IfFileExists{#1}{\begin{quotation}\noindent\textsc{Key:} #1\\
+  \textsc{Annotation:}\ \input{#1}\end{quotation}}{}}
+\providecommand{\bibAnnote}[2]{%
+  \begin{quotation}\noindent\textsc{Key:} #1\\
+  \textsc{Annotation:}\ #2\end{quotation}}
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem{guzella2009review}
+Guzella TS, Caminhas WM (2009) A review of machine learning approaches to spam
+  filtering.
+\newblock Expert Systems with Applications 36: 10206--10222.
+\bibAnnoteFile{guzella2009review}
+
+\bibitem{hastie2009elements}
+Hastie T, Tibshirani R, Friedman J, Hastie T, Friedman J, et~al. (2009) The
+  elements of statistical learning, volume~2.
+\newblock Springer.
+\bibAnnoteFile{hastie2009elements}
+
+\bibitem{gh}
+Zhou E, Chou-Ren D (2015).
+\newblock cos424-hw1.
+\newblock \url{https://github.com/edz504/cos424-hw1}.
+\bibAnnoteFile{gh}
+
+\bibitem{dataset}
+University P (2007).
+\newblock Trec 2007 data.
+\newblock \urlprefix\url{isun.cs.princeton.edu/trec07p_data.tar.gz}.
+\bibAnnoteFile{dataset}
+
+\bibitem{abbasi2008writeprints}
+Abbasi A, Chen H (2008) Writeprints: A stylometric approach to identity-level
+  identification and similarity detection in cyberspace.
+\newblock ACM Transactions on Information Systems (TOIS) 26: 7.
+\bibAnnoteFile{abbasi2008writeprints}
+
+\bibitem{scikit-learn}
+Pedregosa F, Varoquaux G, Gramfort A, Michel V, Thirion B, et~al. (2011)
+  Scikit-learn: Machine learning in {P}ython.
+\newblock Journal of Machine Learning Research 12: 2825--2830.
+\bibAnnoteFile{scikit-learn}
+
+\bibitem{randomForest}
+Liaw A, Wiener M (2002) Classification and regression by randomforest.
+\newblock R News 2: 18-22.
+\bibAnnoteFile{randomForest}
+
+\bibitem{meyer2014package}
+Meyer D, Dimitriadou E, Hornik K, Weingessel A, Leisch F, et~al. (2014) Package
+  ‘e1071’ .
+\bibAnnoteFile{meyer2014package}
+
+\bibitem{kohavi1995study}
+Kohavi R, et~al. (1995) A study of cross-validation and bootstrap for accuracy
+  estimation and model selection.
+\newblock In: Ijcai. volume~14, pp. 1137--1145.
+\bibAnnoteFile{kohavi1995study}
+
+\bibitem{powers2011evaluation}
+Powers DM (2011) Evaluation: from precision, recall and f-measure to roc,
+  informedness, markedness and correlation .
+\bibAnnoteFile{powers2011evaluation}
+
+\bibitem{ggplot2}
+Wickham H (2009) ggplot2: elegant graphics for data analysis.
+\newblock Springer New York.
+\newblock \urlprefix\url{http://had.co.nz/ggplot2/book}.
+\bibAnnoteFile{ggplot2}
+
+\bibitem{zhu2009}
+Zhu J, Ahmed A, Xing EP (2009) Medlda: maximum margin supervised topic models
+  for regression and classification.
+\newblock In: Proceedings of the 26th Annual International Conference on
+  Machine Learning. ACM, pp. 1257--1264.
+\bibAnnoteFile{zhu2009}
+
+\bibitem{matthews1993neural}
+Matthews RA, Merriam TV (1993) Neural computation in stylometry i: An
+  application to the works of shakespeare and fletcher.
+\newblock Literary and Linguistic Computing 8: 203--209.
+\bibAnnoteFile{matthews1993neural}
+
+\bibitem{merriam1994neural}
+Merriam TV, Matthews RA (1994) Neural computation in stylometry ii: An
+  application to the works of shakespeare and marlowe.
+\newblock Literary and Linguistic Computing 9: 1--6.
+\bibAnnoteFile{merriam1994neural}
+
+\bibitem{holmes1995federalist}
+Holmes DI, Forsyth RS (1995) The federalist revisited: New directions in
+  authorship attribution.
+\newblock Literary and Linguistic Computing 10: 111--127.
+\bibAnnoteFile{holmes1995federalist}
+
+\end{thebibliography}
